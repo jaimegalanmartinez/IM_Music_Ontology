@@ -1,0 +1,506 @@
+@prefix : <http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3> .
+
+<http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3> rdf:type owl:Ontology ;
+                                                                           owl:versionIRI <http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3/1.0> .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#AcousticPlaylist
+:AcousticPlaylist rdf:type owl:Class ;
+                  rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Album
+:Album rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#AlbumSong
+:AlbumSong rdf:type owl:Class ;
+           rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist
+:Artist rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Bassist
+:Bassist rdf:type owl:Class ;
+         rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#BigLabel
+:BigLabel rdf:type owl:Class ;
+          rdfs:subClassOf :Label ;
+          owl:disjointWith :SmallLabel .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#CD
+:CD rdf:type owl:Class ;
+    rdfs:subClassOf :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Cassette
+:Cassette rdf:type owl:Class ;
+          rdfs:subClassOf :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Classic
+:Classic rdf:type owl:Class ;
+         rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Country
+:Country rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#DJProducer
+:DJProducer rdf:type owl:Class ;
+            rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Dance
+:Dance rdf:type owl:Class ;
+       rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Digital
+:Digital rdf:type owl:Class ;
+         rdfs:subClassOf :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Drummer
+:Drummer rdf:type owl:Class ;
+         rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Electronic
+:Electronic rdf:type owl:Class ;
+            rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ElectronicInstrument
+:ElectronicInstrument rdf:type owl:Class ;
+                      rdfs:subClassOf :Instrument .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ElectronicMusicBand
+:ElectronicMusicBand rdf:type owl:Class ;
+                     rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ElectronicMusicRadio
+:ElectronicMusicRadio rdf:type owl:Class ;
+                      rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#EnergeticPlaylist
+:EnergeticPlaylist rdf:type owl:Class ;
+                   rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#English
+:English rdf:type owl:Class ;
+         rdfs:subClassOf :Language .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#German
+:German rdf:type owl:Class ;
+        rdfs:subClassOf :Language .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Germany
+:Germany rdf:type owl:Class ;
+         rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Guitarist
+:Guitarist rdf:type owl:Class ;
+           rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#HappyPlaylist
+:HappyPlaylist rdf:type owl:Class ;
+               rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Hungarian
+:Hungarian rdf:type owl:Class ;
+           rdfs:subClassOf :Language .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Hungary
+:Hungary rdf:type owl:Class ;
+         rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Instrument
+:Instrument rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#InstrumentalPlaylist
+:InstrumentalPlaylist rdf:type owl:Class ;
+                      rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Jazz
+:Jazz rdf:type owl:Class ;
+      rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#JazzMusicBand
+:JazzMusicBand rdf:type owl:Class ;
+               rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#JazzMusicRadio
+:JazzMusicRadio rdf:type owl:Class ;
+                rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label
+:Label rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Language
+:Language rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#LivenessPlaylist
+:LivenessPlaylist rdf:type owl:Class ;
+                  rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#LoudnessPlaylist
+:LoudnessPlaylist rdf:type owl:Class ;
+                  rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Medium
+:Medium rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Metal
+:Metal rdf:type owl:Class ;
+       rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MetalMusicBand
+:MetalMusicBand rdf:type owl:Class ;
+                rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MetalMusicRadio
+:MetalMusicRadio rdf:type owl:Class ;
+                 rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicBand
+:MusicBand rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicGenre
+:MusicGenre rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicRadioStation
+:MusicRadioStation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Partiture
+:Partiture rdf:type owl:Class ;
+           rdfs:subClassOf :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#PercusionInstrument
+:PercusionInstrument rdf:type owl:Class ;
+                     rdfs:subClassOf :Instrument .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Playlist
+:Playlist rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Pop
+:Pop rdf:type owl:Class ;
+     rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#PopMusicBand
+:PopMusicBand rdf:type owl:Class ;
+              rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#PopMusicRadio
+:PopMusicRadio rdf:type owl:Class ;
+               rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReadyToDancePlaylist
+:ReadyToDancePlaylist rdf:type owl:Class ;
+                      rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Reggaeton
+:Reggaeton rdf:type owl:Class ;
+           rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReggaetonMusicBand
+:ReggaetonMusicBand rdf:type owl:Class ;
+                    rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReggaetonMusicRadio
+:ReggaetonMusicRadio rdf:type owl:Class ;
+                     rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Rock
+:Rock rdf:type owl:Class ;
+      rdfs:subClassOf :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#RockMusicBand
+:RockMusicBand rdf:type owl:Class ;
+               rdfs:subClassOf :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#RockMusicRadio
+:RockMusicRadio rdf:type owl:Class ;
+                rdfs:subClassOf :MusicRadioStation .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Singer
+:Singer rdf:type owl:Class ;
+        rdfs:subClassOf :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Single
+:Single rdf:type owl:Class ;
+        rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SmallLabel
+:SmallLabel rdf:type owl:Class ;
+            rdfs:subClassOf :Label .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song
+:Song rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfGermany
+:SongOfGermany rdf:type owl:Class ;
+               rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfHungary
+:SongOfHungary rdf:type owl:Class ;
+               rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfSpain
+:SongOfSpain rdf:type owl:Class ;
+             rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfUnitedKingdom
+:SongOfUnitedKingdom rdf:type owl:Class ;
+                     rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfUnitedStates
+:SongOfUnitedStates rdf:type owl:Class ;
+                    rdfs:subClassOf :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Spain
+:Spain rdf:type owl:Class ;
+       rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Spanish
+:Spanish rdf:type owl:Class ;
+         rdfs:subClassOf :Language .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SpeechinessPlaylist
+:SpeechinessPlaylist rdf:type owl:Class ;
+                     rdfs:subClassOf :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#StringedInstrument
+:StringedInstrument rdf:type owl:Class ;
+                    rdfs:subClassOf :Instrument .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Undefined
+:Undefined rdf:type owl:Class ;
+           rdfs:subClassOf :Language .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#UnitedKingdom
+:UnitedKingdom rdf:type owl:Class ;
+               rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#UnitedStates
+:UnitedStates rdf:type owl:Class ;
+              rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Vinyl
+:Vinyl rdf:type owl:Class ;
+       rdfs:subClassOf :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Voice
+:Voice rdf:type owl:Class ;
+       rdfs:subClassOf :Instrument .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#WindInstrument
+:WindInstrument rdf:type owl:Class ;
+                rdfs:subClassOf :Instrument .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AcousticPlaylist
+                :EnergeticPlaylist
+                :HappyPlaylist
+                :InstrumentalPlaylist
+                :LivenessPlaylist
+                :LoudnessPlaylist
+                :ReadyToDancePlaylist
+                :SpeechinessPlaylist
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Album
+                :Artist
+                :Country
+                :Instrument
+                :Label
+                :Language
+                :Medium
+                :MusicBand
+                :MusicGenre
+                :MusicRadioStation
+                :Playlist
+                :Song
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AlbumSong
+                :Single
+                :SongOfGermany
+                :SongOfHungary
+                :SongOfSpain
+                :SongOfUnitedKingdom
+                :SongOfUnitedStates
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Bassist
+                :DJProducer
+                :Drummer
+                :Guitarist
+                :Singer
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CD
+                :Cassette
+                :Digital
+                :Partiture
+                :Vinyl
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Classic
+                :Dance
+                :Electronic
+                :Jazz
+                :Metal
+                :Pop
+                :Reggaeton
+                :Rock
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ElectronicInstrument
+                :PercusionInstrument
+                :StringedInstrument
+                :Voice
+                :WindInstrument
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ElectronicMusicBand
+                :JazzMusicBand
+                :MetalMusicBand
+                :PopMusicBand
+                :ReggaetonMusicBand
+                :RockMusicBand
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ElectronicMusicRadio
+                :JazzMusicRadio
+                :MetalMusicRadio
+                :PopMusicRadio
+                :ReggaetonMusicRadio
+                :RockMusicRadio
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :English
+                :German
+                :Hungarian
+                :Spanish
+                :Undefined
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Germany
+                :Hungary
+                :Spain
+                :UnitedKingdom
+                :UnitedStates
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
