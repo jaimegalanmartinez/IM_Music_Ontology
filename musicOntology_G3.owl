@@ -10,6 +10,266 @@
                                                                            owl:versionIRI <http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3/1.0> .
 
 #################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#belongsTo
+:belongsTo rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Album ;
+           rdfs:range :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#createdBy
+:createdBy rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :hasMadeSong ;
+           rdfs:domain :Song ;
+           rdfs:range :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasArtist
+:hasArtist rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :hasLabel ;
+           rdfs:domain :Label ;
+           rdfs:range :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasInstrument
+:hasInstrument rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasSongProperty ;
+               rdfs:domain :Song ;
+               rdfs:range :Instrument .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasLabel
+:hasLabel rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Artist ;
+          rdfs:range :Label .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasLabelProperty
+:hasLabelProperty rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMadeAlbum
+:hasMadeAlbum rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :Artist ;
+              rdfs:range :Album .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMadeInCountry
+:hasMadeInCountry rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasSongProperty ;
+                  rdfs:domain :Song ;
+                  rdfs:range :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMadeSong
+:hasMadeSong rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Artist ;
+             rdfs:range :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMedium
+:hasMedium rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasSongProperty ;
+           rdfs:domain :Song ;
+           rdfs:range :Medium .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMember
+:hasMember rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :isMemberOf ;
+           rdfs:domain :MusicBand ;
+           rdfs:range :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasMusicBand
+:hasMusicBand rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :Song ;
+              rdfs:range :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasProducedByLabel
+:hasProducedByLabel rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain :Song ;
+                    rdfs:range :Label .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasSongAlbum
+:hasSongAlbum rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              owl:inverseOf :partOfAlbum ;
+              rdfs:domain :Album ;
+              rdfs:range :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasSongPlaylist
+:hasSongPlaylist rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Playlist ;
+                 rdfs:range :Song .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasSongProperty
+:hasSongProperty rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isFromCountry
+:isFromCountry rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :Artist ;
+               rdfs:range :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isInPlaylist
+:isInPlaylist rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :Song ;
+              rdfs:range :Playlist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isInterestedIn
+:isInterestedIn rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasLabelProperty ;
+                rdfs:domain :Label ;
+                rdfs:range :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasLabelProperty ;
+             rdfs:domain :Label ;
+             rdfs:range :Country .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isMemberOf
+:isMemberOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :Artist ;
+            rdfs:range :MusicBand .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#partOfAlbum
+:partOfAlbum rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Song ;
+             rdfs:range :Album .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#playsSongs
+:playsSongs rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :MusicRadioStation ;
+            rdfs:range :Song .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Acousticness
+:Acousticness rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Song ;
+              rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Danceability
+:Danceability rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :Song ;
+              rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Energy
+:Energy rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:domain :Song ;
+        rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Happiness
+:Happiness rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Song ;
+           rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ISRC_code
+:ISRC_code rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Song ;
+           rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Instrumentalness
+:Instrumentalness rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain :Song ;
+                  rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Liveness
+:Liveness rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Song ;
+          rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Loudness
+:Loudness rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Song ;
+          rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Speechiness
+:Speechiness rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Song ;
+             rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Tempo
+:Tempo rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:domain :Song ;
+       rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#duration_ms
+:duration_ms rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Song ;
+             rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain :Song ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#releaseDate
+:releaseDate rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Song ;
+             rdfs:range xsd:dateTime .
+
+
+#################################################################
 #    Classes
 #################################################################
 
