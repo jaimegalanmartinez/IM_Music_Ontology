@@ -192,11 +192,10 @@
                  rdfs:range xsd:nonNegativeInteger .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasDuration_ms
-:hasDuration_ms rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf owl:topDataProperty ;
-                rdfs:domain :Song ;
-                rdfs:range xsd:nonNegativeInteger .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasDuration_s
+:hasDuration_s rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Song ;
+               rdfs:range xsd:nonNegativeInteger .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasEnergy
@@ -238,7 +237,7 @@
 :hasLoudness rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdfs:domain :Song ;
-             rdfs:range xsd:nonNegativeInteger .
+             rdfs:range xsd:int .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasNameAlbum
@@ -589,32 +588,168 @@
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song
-:Song rdf:type owl:Class .
+:Song rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :createdBy ;
+                        owl:someValuesFrom :Artist
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasInstrument ;
+                        owl:someValuesFrom :Instrument
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasMedium ;
+                        owl:someValuesFrom :Medium
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isInPlaylist ;
+                        owl:someValuesFrom :Playlist
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasMadeInCountry ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onClass :Country
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasProducedByLabel ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onClass :Label
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :partOfAlbum ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onClass :Album
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasAcousticness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasDanceability ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasDuration_s ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasEnergy ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasHappiness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasISRCcode ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasInstrumentalness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasLiveness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasLoudness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasNameSong ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasReleaseDate ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:dateTime
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSpeechiness ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasTempo ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:nonNegativeInteger
+                      ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfGermany
 :SongOfGermany rdf:type owl:Class ;
-               rdfs:subClassOf :Song .
+               owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasMadeInCountry ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass :Germany
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfHungary
 :SongOfHungary rdf:type owl:Class ;
-               rdfs:subClassOf :Song .
+               owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasMadeInCountry ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass :Hungary
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfSpain
 :SongOfSpain rdf:type owl:Class ;
-             rdfs:subClassOf :Song .
+             owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasMadeInCountry ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :Spain
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfUnitedKingdom
 :SongOfUnitedKingdom rdf:type owl:Class ;
-                     rdfs:subClassOf :Song .
+                     owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :hasMadeInCountry ;
+                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                  owl:onClass :UnitedKingdom
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfUnitedStates
 :SongOfUnitedStates rdf:type owl:Class ;
-                    rdfs:subClassOf :Song .
+                    owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :hasMadeInCountry ;
+                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass :UnitedStates
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Spain
@@ -665,6 +800,67 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#WindInstrument
 :WindInstrument rdf:type owl:Class ;
                 rdfs:subClassOf :Instrument .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#CDMedium
+:CDMedium rdf:type owl:NamedIndividual ,
+                   :CD .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#CassetteMedium
+:CassetteMedium rdf:type owl:NamedIndividual ,
+                         :Cassette .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#DigitalMedium
+:DigitalMedium rdf:type owl:NamedIndividual ,
+                        :Digital .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#GermanSong1
+:GermanSong1 rdf:type owl:NamedIndividual ,
+                      :Song ;
+             :hasMadeInCountry :GermanyCountry ;
+             :hasMedium :DigitalMedium ;
+             :partOfAlbum :RauschAlbum ;
+             :hasAcousticness "90"^^xsd:nonNegativeInteger ;
+             :hasDanceability "35"^^xsd:nonNegativeInteger ;
+             :hasDuration_s "257"^^xsd:nonNegativeInteger ;
+             :hasEnergy "31"^^xsd:nonNegativeInteger ;
+             :hasHappiness "20"^^xsd:nonNegativeInteger ;
+             :hasInstrumentalness "0"^^xsd:nonNegativeInteger ;
+             :hasLiveness "15"^^xsd:nonNegativeInteger ;
+             :hasLoudness "-9"^^xsd:int ;
+             :hasSpeechiness "10"^^xsd:nonNegativeInteger ;
+             :hasTempo "70"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#GermanyCountry
+:GermanyCountry rdf:type owl:NamedIndividual ,
+                         :Germany .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#PartitureMedium
+:PartitureMedium rdf:type owl:NamedIndividual ,
+                          :Partiture .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#RauschAlbum
+:RauschAlbum rdf:type owl:NamedIndividual ,
+                      :Album .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#VinylMedium
+:VinylMedium rdf:type owl:NamedIndividual ,
+                      :Vinyl .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ff
+:ff rdf:type owl:NamedIndividual .
 
 
 #################################################################
