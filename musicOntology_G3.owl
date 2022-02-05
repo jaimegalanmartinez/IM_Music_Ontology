@@ -29,12 +29,12 @@
 :MusicBandObjectProperty rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicGenreObjectProperty
+:MusicGenreObjectProperty rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicRadioStationObjectProperty
 :MusicRadioStationObjectProperty rdf:type owl:ObjectProperty .
-
-
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#PlaylistObjectProperty
-:PlaylistObjectProperty rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongObjectProperty
@@ -46,6 +46,21 @@
            rdfs:subPropertyOf :AlbumObjectProperty ;
            rdfs:domain :Album ;
            rdfs:range :Artist .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#belongsToMusicGenre
+:belongsToMusicGenre rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :SongObjectProperty ;
+                     owl:inverseOf :genreHasSong ;
+                     rdfs:domain :Song ;
+                     rdfs:range :MusicGenre .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#genreHasSong
+:genreHasSong rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :MusicGenreObjectProperty ;
+              rdfs:domain :MusicGenre ;
+              rdfs:range :Song .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasArtist
@@ -129,13 +144,6 @@
               rdfs:range :Song .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasSongPlaylist
-:hasSongPlaylist rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf :PlaylistObjectProperty ;
-                 rdfs:domain :Playlist ;
-                 rdfs:range :Song .
-
-
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isCreatedBy
 :isCreatedBy rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :SongObjectProperty ;
@@ -153,8 +161,7 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isInPlaylist
 :isInPlaylist rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :SongObjectProperty ;
-              rdfs:domain :Song ;
-              rdfs:range :Playlist .
+              rdfs:domain :Song .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#isInterestedIn
@@ -282,7 +289,6 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasNamePlayList
 :hasNamePlayList rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :PlayListDataProperty ;
-                 rdfs:domain :Playlist ;
                  rdfs:range xsd:string .
 
 
@@ -296,7 +302,6 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#hasOwner
 :hasOwner rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :PlayListDataProperty ;
-          rdfs:domain :Playlist ;
           rdfs:range xsd:string .
 
 
@@ -317,9 +322,9 @@
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#AcousticPlaylist
-:AcousticPlaylist rdf:type owl:Class ;
-                  rdfs:subClassOf :Playlist .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#AcousticSong
+:AcousticSong rdf:type owl:Class ;
+              rdfs:subClassOf :Song .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Album
@@ -391,6 +396,11 @@
          rdfs:subClassOf :Artist .
 
 
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Belgium
+:Belgium rdf:type owl:Class ;
+         rdfs:subClassOf :Country .
+
+
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#BigLabel
 :BigLabel rdf:type owl:Class ;
           rdfs:subClassOf :Label ;
@@ -456,9 +466,22 @@
                       rdfs:subClassOf :MusicRadioStation .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#EnergeticPlaylist
-:EnergeticPlaylist rdf:type owl:Class ;
-                   rdfs:subClassOf :Playlist .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#EnergeticSong
+:EnergeticSong rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasEnergy ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                                              owl:onDatatype xsd:nonNegativeInteger ;
+                                                                              owl:withRestrictions ( [ xsd:minExclusive "80"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   )
+                                                                            ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#English
@@ -481,9 +504,9 @@
            rdfs:subClassOf :Artist .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#HappyPlaylist
-:HappyPlaylist rdf:type owl:Class ;
-               rdfs:subClassOf :Playlist .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#HappySong
+:HappySong rdf:type owl:Class ;
+           rdfs:subClassOf :Song .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Hungarian
@@ -500,9 +523,9 @@
 :Instrument rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#InstrumentalPlaylist
-:InstrumentalPlaylist rdf:type owl:Class ;
-                      rdfs:subClassOf :Playlist .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#InstrumentalSong
+:InstrumentalSong rdf:type owl:Class ;
+                  rdfs:subClassOf :Song .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Jazz
@@ -523,10 +546,6 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label
 :Label rdf:type owl:Class ;
        rdfs:subClassOf [ rdf:type owl:Restriction ;
-                         owl:onProperty :hasArtist ;
-                         owl:someValuesFrom :Artist
-                       ] ,
-                       [ rdf:type owl:Restriction ;
                          owl:onProperty :isLocatedIn ;
                          owl:someValuesFrom :Country
                        ] .
@@ -577,7 +596,11 @@
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicGenre
-:MusicGenre rdf:type owl:Class .
+:MusicGenre rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :genreHasSong ;
+                              owl:someValuesFrom :Song
+                            ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#MusicRadioStation
@@ -633,14 +656,6 @@
                      rdfs:subClassOf :Instrument .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Playlist
-:Playlist rdf:type owl:Class ;
-          rdfs:subClassOf [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasSongPlaylist ;
-                            owl:someValuesFrom :Song
-                          ] .
-
-
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Pop
 :Pop rdf:type owl:Class ;
      rdfs:subClassOf :MusicGenre .
@@ -656,14 +671,42 @@
                rdfs:subClassOf :MusicRadioStation .
 
 
-###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReadyToDancePlaylist
-:ReadyToDancePlaylist rdf:type owl:Class ;
-                      rdfs:subClassOf :Playlist .
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReadyToDanceSong
+:ReadyToDanceSong rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasDanceability ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                                                 owl:onDatatype xsd:nonNegativeInteger ;
+                                                                                 owl:withRestrictions ( [ xsd:minExclusive "85"^^xsd:nonNegativeInteger
+                                                                                                        ]
+                                                                                                      )
+                                                                               ]
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Reggaeton
 :Reggaeton rdf:type owl:Class ;
-           rdfs:subClassOf :MusicGenre .
+           owl:equivalentClass [ owl:intersectionOf ( :MusicGenre
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasTempo ;
+                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                        owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                                          owl:onDatatype xsd:nonNegativeInteger ;
+                                                                          owl:withRestrictions ( [ xsd:minInclusive "80"^^xsd:nonNegativeInteger
+                                                                                                 ]
+                                                                                                 [ xsd:maxInclusive "120"^^xsd:nonNegativeInteger
+                                                                                                 ]
+                                                                                               )
+                                                                        ]
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ReggaetonMusicBand
@@ -731,13 +774,7 @@
             owl:equivalentClass [ owl:intersectionOf ( :Label
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :hasArtist ;
-                                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                         owl:onClass :Artist
-                                                       ]
-                                                       [ rdf:type owl:Restriction ;
-                                                         owl:onProperty :hasArtist ;
-                                                         owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                                         owl:onClass :Artist
+                                                         owl:minCardinality "2"^^xsd:nonNegativeInteger
                                                        ]
                                                      ) ;
                                   rdf:type owl:Class
@@ -747,6 +784,10 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song
 :Song rdf:type owl:Class ;
       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :belongsToMusicGenre ;
+                        owl:someValuesFrom :MusicGenre
+                      ] ,
+                      [ rdf:type owl:Restriction ;
                         owl:onProperty :hasInstrument ;
                         owl:someValuesFrom :Instrument
                       ] ,
@@ -757,10 +798,6 @@
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :isCreatedBy ;
                         owl:someValuesFrom :Artist
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :isInPlaylist ;
-                        owl:someValuesFrom :Playlist
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasMadeInCountry ;
@@ -843,6 +880,19 @@
                                                         ) ;
                                      rdf:type owl:Class
                                    ] .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfNetherlands
+:SongOfNetherlands rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasMadeInCountry ;
+                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass :Netherlands
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SongOfSpain
@@ -929,6 +979,44 @@
                 rdfs:subClassOf :Instrument .
 
 
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#10sSong
+<http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#10sSong> rdf:type owl:Class ;
+                                                                                  owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                               owl:onProperty :hasReleaseYear ;
+                                                                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                    owl:onDatatype xsd:nonNegativeInteger ;
+                                                                                                                                                    owl:withRestrictions ( [ xsd:minInclusive "2010"^^xsd:nonNegativeInteger
+                                                                                                                                                                           ]
+                                                                                                                                                                           [ xsd:maxExclusive "2020"^^xsd:nonNegativeInteger
+                                                                                                                                                                           ]
+                                                                                                                                                                         )
+                                                                                                                                                  ]
+                                                                                                                             ]
+                                                                                                                           ) ;
+                                                                                                        rdf:type owl:Class
+                                                                                                      ] .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#80sSong
+<http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#80sSong> rdf:type owl:Class ;
+                                                                                  owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                               owl:onProperty :hasReleaseYear ;
+                                                                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                    owl:onDatatype xsd:nonNegativeInteger ;
+                                                                                                                                                    owl:withRestrictions ( [ xsd:minInclusive "1980"^^xsd:nonNegativeInteger
+                                                                                                                                                                           ]
+                                                                                                                                                                           [ xsd:maxExclusive "1990"^^xsd:nonNegativeInteger
+                                                                                                                                                                           ]
+                                                                                                                                                                         )
+                                                                                                                                                  ]
+                                                                                                                             ]
+                                                                                                                           ) ;
+                                                                                                        rdf:type owl:Class
+                                                                                                      ] .
+
+
 #################################################################
 #    Individuals
 #################################################################
@@ -940,26 +1028,73 @@
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Album_AbbeyRoad
-:Album_AbbeyRoad rdf:type owl:NamedIndividual ;
+:Album_AbbeyRoad rdf:type owl:NamedIndividual ,
+                          :Album ;
                  :hasSongAlbum :Song_HereComesTheSun .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Album_Whenever_You_NeedSomebody
+:Album_Whenever_You_NeedSomebody rdf:type owl:NamedIndividual ,
+                                          :Album ;
+                                 :hasSongAlbum :Song_NeverGonnaGiveYouUp .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#ArtistHeleneFischer
 :ArtistHeleneFischer rdf:type owl:NamedIndividual ,
                               :Singer ;
+                     :hasLabel :Label_UniversalMusicGroup ;
                      :hasNameArtist "Helene Fischer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_CTangana
+:Artist_CTangana rdf:type owl:NamedIndividual ,
+                          :Singer ;
+                 :hasLabel :Label_SonyMusicEntertainment ;
+                 :isFromCountry :SpainCountry ;
+                 :hasNameArtist "C. Tangana"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_DimitriVegas_LikeMike
+:Artist_DimitriVegas_LikeMike rdf:type owl:NamedIndividual ,
+                                       :DJProducer ;
+                              :hasLabel :Label_SpinninRecords ;
+                              :isFromCountry :BelgiumCountry ;
+                              :hasNameArtist "Dimitri Vegas & Like Mike"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_DonOmar
 :Artist_DonOmar rdf:type owl:NamedIndividual ,
                          :Singer ;
+                :hasLabel :Label_SabanMusicGroup ;
                 :hasNameArtist "Don Omar"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_OliverHeldens
+:Artist_OliverHeldens rdf:type owl:NamedIndividual ,
+                               :DJProducer ;
+                      :hasLabel :Label_SpinninRecords ;
+                      :isFromCountry :NetherlandsCountry ;
+                      :hasNameArtist "Oliver Heldens"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_R3HAB
 :Artist_R3HAB rdf:type owl:NamedIndividual ,
                        :DJProducer ;
+              :hasLabel :Label_SpinninRecords ;
               :hasNameArtist "R3HAB"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Artist_RickAstley
+:Artist_RickAstley rdf:type owl:NamedIndividual ,
+                            :Singer ;
+                   :hasLabel :Label_BMG_RightsManagement ;
+                   :isFromCountry :UnitedKingdomCountry ;
+                   :hasNameArtist "Rick Astley"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#BelgiumCountry
+:BelgiumCountry rdf:type owl:NamedIndividual ,
+                         :Belgium .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#GermanSong1
@@ -988,23 +1123,36 @@
                          :Germany .
 
 
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_BMG_RightsManagement
+:Label_BMG_RightsManagement rdf:type owl:NamedIndividual ,
+                                     :Label ;
+                            :isLocatedIn :UnitedKingdomCountry ;
+                            :hasNameLabel "BMG Rights Management Ltd"^^xsd:string .
+
+
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_EMI_Catalogue
-:Label_EMI_Catalogue rdf:type owl:NamedIndividual ;
+:Label_EMI_Catalogue rdf:type owl:NamedIndividual ,
+                              :Label ;
                      :isLocatedIn :UnitedKingdomCountry .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_SabanMusicGroup
 :Label_SabanMusicGroup rdf:type owl:NamedIndividual ,
                                 :Label ;
-                       :hasArtist :Artist_DonOmar ;
                        :isLocatedIn :UnitedStatesCountry ;
                        :hasNameLabel "Saban Music Group Distribution LLC"^^xsd:string .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_SonyMusicEntertainment
+:Label_SonyMusicEntertainment rdf:type owl:NamedIndividual ,
+                                       :Label ;
+                              :isLocatedIn :UnitedStatesCountry ;
+                              :hasNameLabel "Sony Music Entertainment"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_SpinninRecords
 :Label_SpinninRecords rdf:type owl:NamedIndividual ,
                                :Label ;
-                      :hasArtist :Artist_R3HAB ;
                       :isLocatedIn :NetherlandsCountry ;
                       :hasNameLabel "Spinnin' Records"^^xsd:string .
 
@@ -1012,7 +1160,6 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Label_UniversalMusicGroup
 :Label_UniversalMusicGroup rdf:type owl:NamedIndividual ,
                                     :Label ;
-                           :hasArtist :ArtistHeleneFischer ;
                            :isLocatedIn :UnitedStatesCountry ;
                            :hasNameLabel "UniversalMusicGroup"^^xsd:string .
 
@@ -1050,6 +1197,28 @@
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#NetherlandsCountry
 :NetherlandsCountry rdf:type owl:NamedIndividual ,
                              :Netherlands .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_Bunnydance
+:Song_Bunnydance rdf:type owl:NamedIndividual ,
+                          :Song ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :partOfAlbum ;
+                            owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Album
+                          ] ;
+                 :hasMadeInCountry :NetherlandsCountry ;
+                 :hasMedium :MediumDigital ;
+                 :isCreatedBy :Artist_OliverHeldens ;
+                 :hasAcousticness "1"^^xsd:nonNegativeInteger ;
+                 :hasDanceability "79"^^xsd:nonNegativeInteger ;
+                 :hasDuration_s "248"^^xsd:nonNegativeInteger ;
+                 :hasEnergy "97"^^xsd:nonNegativeInteger ;
+                 :hasHappiness "56"^^xsd:nonNegativeInteger ;
+                 :hasInstrumentalness "58"^^xsd:nonNegativeInteger ;
+                 :hasNameSong "Bunnydance"^^xsd:string ;
+                 :hasReleaseYear "2015"^^xsd:nonNegativeInteger ;
+                 :hasTempo "126"^^xsd:nonNegativeInteger .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_HereComesTheSun
@@ -1092,6 +1261,58 @@
              :hasTempo "128"^^xsd:nonNegativeInteger .
 
 
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_MalaMujer
+:Song_MalaMujer rdf:type owl:NamedIndividual ,
+                         :Song ;
+                :hasMadeInCountry :SpainCountry ;
+                :hasMedium :MediumDigital ;
+                :isCreatedBy :Artist_CTangana ;
+                :hasAcousticness "24"^^xsd:nonNegativeInteger ;
+                :hasDanceability "84"^^xsd:nonNegativeInteger ;
+                :hasDuration_s "223"^^xsd:nonNegativeInteger ;
+                :hasEnergy "73"^^xsd:nonNegativeInteger ;
+                :hasHappiness "47"^^xsd:nonNegativeInteger ;
+                :hasInstrumentalness "0"^^xsd:nonNegativeInteger ;
+                :hasReleaseYear "2017"^^xsd:nonNegativeInteger ;
+                :hasTempo "101"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_Mammoth
+:Song_Mammoth rdf:type owl:NamedIndividual ,
+                       :Song ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :partOfAlbum ;
+                         owl:maxQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Album
+                       ] ;
+              :hasMedium :MediumDigital ;
+              :isCreatedBy :Artist_DimitriVegas_LikeMike ;
+              :hasAcousticness "0"^^xsd:nonNegativeInteger ;
+              :hasDanceability "65"^^xsd:nonNegativeInteger ;
+              :hasDuration_s "332"^^xsd:nonNegativeInteger ;
+              :hasEnergy "85"^^xsd:nonNegativeInteger ;
+              :hasHappiness "47"^^xsd:nonNegativeInteger ;
+              :hasInstrumentalness "30"^^xsd:nonNegativeInteger ;
+              :hasNameSong "Mammoth"^^xsd:string ;
+              :hasReleaseYear "2013"^^xsd:nonNegativeInteger ;
+              :hasTempo "128"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_NeverGonnaGiveYouUp
+:Song_NeverGonnaGiveYouUp rdf:type owl:NamedIndividual ,
+                                   :Song ;
+                          :isCreatedBy :Artist_RickAstley ;
+                          :hasAcousticness "12"^^xsd:nonNegativeInteger ;
+                          :hasDanceability "72"^^xsd:nonNegativeInteger ;
+                          :hasDuration_s "214"^^xsd:nonNegativeInteger ;
+                          :hasEnergy "94"^^xsd:nonNegativeInteger ;
+                          :hasHappiness "91"^^xsd:nonNegativeInteger ;
+                          :hasInstrumentalness "0"^^xsd:nonNegativeInteger ;
+                          :hasNameSong "Never Gonna Give You Up"^^xsd:string ;
+                          :hasReleaseYear "1987"^^xsd:nonNegativeInteger ;
+                          :hasTempo "113"^^xsd:nonNegativeInteger .
+
+
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#Song_SeMenea
 :Song_SeMenea rdf:type owl:NamedIndividual ,
                        :Song ,
@@ -1111,6 +1332,11 @@
               :hasNameSong "Se Menea"^^xsd:string ;
               :hasReleaseYear "2021"^^xsd:nonNegativeInteger ;
               :hasTempo "90"^^xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#SpainCountry
+:SpainCountry rdf:type owl:NamedIndividual ,
+                       :Spain .
 
 
 ###  http://www.semanticweb.org/IM_Group3/ontologies/2022/0/musicOntology_G3#UnitedKingdomCountry
@@ -1138,7 +1364,6 @@
                 :MusicBand
                 :MusicGenre
                 :MusicRadioStation
-                :Playlist
                 :Song
               )
 ] .
