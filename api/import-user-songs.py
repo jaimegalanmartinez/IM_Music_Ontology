@@ -48,6 +48,10 @@ def getToken():
 def removePrefix(text, prefix):
     return text[text.startswith(prefix) and len(prefix):]
 
+
+def stringRemoveNonAlphanumeric(string):
+    return ''.join(filter(str.isalnum, string))
+
 # -------------------------------------------------------------------------------------------------------------
 
 
@@ -89,4 +93,26 @@ for info in songDetails:
     songInfo[id]['happiness'] = str(int(info['valence']*100))
     songInfo[id]['tempo'] = str(int(info['tempo']))
 
-    print(songInfo[id])
+
+for id, song in songInfo.items():
+    songName = song['name'].replace('"', '')
+    songNameSafe = stringRemoveNonAlphanumeric(song['name'])
+    songArtist = stringRemoveNonAlphanumeric(song['artist'])
+
+    owl = f""":Song_{songNameSafe} rdf:type owl:NamedIndividual ,
+                                                    :Song ;
+                                        :hasMedium :MediumDigital ;
+                                        :isCreatedBy :Artist_{songArtist} ;
+                                        :hasAcousticness "{song['acousticness']}"^^xsd:nonNegativeInteger ;
+                                        :hasDanceability "{song['danceability']}"^^xsd:nonNegativeInteger ;
+                                        :hasDuration_s "{song['durationSec']}"^^xsd:nonNegativeInteger ;
+                                        :hasEnergy "{song['energy']}"^^xsd:nonNegativeInteger ;
+                                        :hasInstrumentalness "{song['instrumentalness']}"^^xsd:nonNegativeInteger ;
+                                        :hasNameSong "{songName}"^^xsd:string ;
+                                        :hasReleaseYear "{song['releaseYear']}"^^xsd:nonNegativeInteger ;
+                                        :hasHappiness "{song['happiness']}"^^xsd:nonNegativeInteger ;
+                                        :hasTempo "{song['tempo']}"^^xsd:nonNegativeInteger .
+
+            """
+
+    print(owl)
